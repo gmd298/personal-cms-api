@@ -2,10 +2,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import logger from './config/logger';
+import v1Router from './v1';
 import { dbUrl, port, logLevel } from './config';
 
 const app = express();
 app.use(morgan(logLevel));
+app.use('/v1', v1Router);
 
 export const connect = async () => {
   logger.info('Connecting to mongo...');
