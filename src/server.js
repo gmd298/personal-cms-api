@@ -9,8 +9,10 @@ export const connect = async () => {
   console.log('Successfully connected to mongo');
 };
 
-export const start = () => {
-
+export const start = async () => {
+  console.log('Starting server...');
+  await app.listen(3000);
+  console.log('Listening on port 3000...');
 };
 
 export default app;
