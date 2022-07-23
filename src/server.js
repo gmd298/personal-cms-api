@@ -1,19 +1,22 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { dbUrl, port } from './config';
+import morgan from 'morgan';
+import logger from './config/logger';
+import { dbUrl, port, logLevel } from './config';
 
 const app = express();
+app.use(morgan(logLevel));
 
 export const connect = async () => {
-  console.log('Connecting to mongo...');
+  logger.info('Connecting to mongo...');
   await mongoose.connect(dbUrl);
-  console.log('Successfully connected to mongo');
+  logger.success('Successfully connected to mongo');
 };
 
 export const start = async () => {
-  console.log('Starting server...');
+  logger.info('Starting server...');
   await app.listen(port);
-  console.log(`Listening on port ${port}...`);
+  logger.success(`Listening on port ${port}...`);
 };
 
 export default app;
