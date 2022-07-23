@@ -1,8 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { dbUrl, port } from './config';
+import morgan from 'morgan';
+import { dbUrl, port, logLevel } from './config';
 
 const app = express();
+app.use(morgan(logLevel));
 
 export const connect = async () => {
   console.log('Connecting to mongo...');
