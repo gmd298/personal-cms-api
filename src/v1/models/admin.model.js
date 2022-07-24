@@ -17,6 +17,7 @@ const adminSchema = mongoose.Schema({
       'super',
     ],
     required: true,
+    default: 'editor',
   },
   posts: [{
     type: mongoose.Schema.Types.ObjectId,

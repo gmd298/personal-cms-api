@@ -7,6 +7,7 @@ import { dbUrl, port, logLevel } from './config';
 
 const app = express();
 app.use(morgan(logLevel));
+app.use(express.json());
 app.use('/v1', v1Router);
 
 export const connect = async () => {
