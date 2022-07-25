@@ -11,8 +11,9 @@ const read = async () => {
 };
 
 const readOne = async (id) => {
-  const admins = await Admin.findById(id);
-  return admins;
+  const admin = await Admin.findById(id).populate('posts');
+
+  return admin;
 };
 
 const update = async (id, name, email) => {

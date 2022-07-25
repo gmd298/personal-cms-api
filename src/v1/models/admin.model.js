@@ -25,11 +25,10 @@ const adminSchema = mongoose.Schema({
   }],
 }, {
   timestamps: true,
-  outputOptions: {
-    toJSON: {
-      transform: (_, result) => {
-        delete result.password;
-      },
+  toJSON: {
+    virtuals: true,
+    transform: (_, result) => {
+      delete result.password;
     },
   },
 });
