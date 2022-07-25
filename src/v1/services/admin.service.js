@@ -11,7 +11,7 @@ const read = async () => {
 };
 
 const readOne = async (id) => {
-  const admins = await Admin.findOne({ id });
+  const admins = await Admin.findById(id);
   return admins;
 };
 
@@ -30,9 +30,15 @@ const update = async (id, name, email) => {
   return admin;
 };
 
+const destroy = async (id) => {
+  const admin = await Admin.findByIdAndDelete(id);
+  return admin;
+};
+
 export default {
   create,
   read,
   readOne,
   update,
+  destroy,
 };
