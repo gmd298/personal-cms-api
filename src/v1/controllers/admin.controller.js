@@ -3,24 +3,6 @@ import adminService from '../services/admin.service';
 
 const adminRouter = Router();
 
-/**
- * example body:
- *  {
- *    name: "John Doe",
- *    email: "john@example.com",
- *    password: "hello1234",
- *  }
- *
- * example response:
- *  {
- *    name: "John Doe",
- *    email: "john@example.com",
- *    id: 1234,
- *    createdAt: 1234,
- *    updatedAt: 1234,
- *  }
- */
-
 adminRouter.post('/', async (request, response) => {
   const {
     body: {
@@ -38,5 +20,25 @@ adminRouter.post('/', async (request, response) => {
 
   response.json(newAdmin);
 });
+
+adminRouter.get('/', async (request, response) => {
+  const admins = await adminService.read();
+
+  response.json(admins);
+});
+
+// adminRouter.get('/:id', async (request, response) => {
+//   const {
+//     body: {
+//       id,
+//     },
+//   } = request;
+
+//   const readAdmin = await adminService.read(
+//     id,
+//   );
+
+//   response.json(readAdmin);
+// });
 
 export default adminRouter;
