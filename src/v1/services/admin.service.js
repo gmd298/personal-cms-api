@@ -10,7 +10,13 @@ const read = async () => {
   return admins;
 };
 
+const readOne = async (id) => {
+  const admins = await Admin.find({ id });
+  return admins;
+};
+
 export default {
   create,
   read,
+  readOne,
 };

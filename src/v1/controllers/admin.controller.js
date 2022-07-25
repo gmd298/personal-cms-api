@@ -27,18 +27,18 @@ adminRouter.get('/', async (request, response) => {
   response.json(admins);
 });
 
-// adminRouter.get('/:id', async (request, response) => {
-//   const {
-//     body: {
-//       id,
-//     },
-//   } = request;
+adminRouter.get('/:id', async (request, response) => {
+  const {
+    body: {
+      id,
+    },
+  } = request;
 
-//   const readAdmin = await adminService.read(
-//     id,
-//   );
+  const readAdmin = await adminService.read(
+    id,
+  );
 
-//   response.json(readAdmin);
-// });
+  response.json(readAdmin);
+});
 
 export default adminRouter;
