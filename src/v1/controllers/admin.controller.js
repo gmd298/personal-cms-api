@@ -29,12 +29,12 @@ adminRouter.get('/', async (request, response) => {
 
 adminRouter.get('/:id', async (request, response) => {
   const {
-    body: {
+    params: {
       id,
     },
   } = request;
 
-  const readAdmin = await adminService.read(
+  const readAdmin = await adminService.readOne(
     id,
   );
 

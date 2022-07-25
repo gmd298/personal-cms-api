@@ -11,7 +11,7 @@ const read = async () => {
 };
 
 const readOne = async (id) => {
-  const admins = await Admin.find({ id });
+  const admins = await Admin.findOne({ id });
   return admins;
 };
 
