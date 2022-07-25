@@ -61,4 +61,17 @@ adminRouter.patch('/:id', async (request, response) => {
   response.json(updateAdmin);
 });
 
+adminRouter.delete('/:id', async (request, response) => {
+  const {
+    params: {
+      id,
+    },
+  } = request;
+
+  const deleteAdmin = await adminService.destroy(
+    id,
+  );
+  response.json(deleteAdmin);
+});
+
 export default adminRouter;
