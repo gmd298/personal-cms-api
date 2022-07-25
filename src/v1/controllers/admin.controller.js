@@ -41,4 +41,24 @@ adminRouter.get('/:id', async (request, response) => {
   response.json(readAdmin);
 });
 
+adminRouter.patch('/:id', async (request, response) => {
+  const {
+    params: {
+      id,
+    },
+    body: {
+      name,
+      email,
+    },
+  } = request;
+
+  const updateAdmin = await adminService.update(
+    id,
+    name,
+    email,
+  );
+
+  response.json(updateAdmin);
+});
+
 export default adminRouter;

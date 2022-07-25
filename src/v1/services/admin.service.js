@@ -15,8 +15,24 @@ const readOne = async (id) => {
   return admins;
 };
 
+const update = async (id, name, email) => {
+  const params = {};
+
+  if (name) {
+    params.name = name;
+  }
+
+  if (email) {
+    params.email = email;
+  }
+
+  const admin = await Admin.findByIdAndUpdate(id, params, { new: true });
+  return admin;
+};
+
 export default {
   create,
   read,
   readOne,
+  update,
 };
