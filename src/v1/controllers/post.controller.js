@@ -48,13 +48,17 @@ postRouter.patch('/:id', async (request, response) => {
       id,
     },
     body: {
-      // ????
+      title,
+      subtitle,
+      content,
     },
   } = request;
 
   const updatePost = await postService.update(
     id,
-    // ????
+    title,
+    subtitle,
+    content,
   );
 
   response.json(updatePost);

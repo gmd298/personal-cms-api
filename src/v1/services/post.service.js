@@ -33,16 +33,19 @@ const readOne = async (id) => {
   return post;
 };
 
-// not sure about the if statements. I think they need to be changed
-const update = async (id, name, email) => {
+const update = async (id, title, subtitle, content) => {
   const params = {};
 
-  if (name) {
-    params.name = name;
+  if (title) {
+    params.title = title;
   }
 
-  if (email) {
-    params.email = email;
+  if (subtitle) {
+    params.subtitle = subtitle;
+  }
+
+  if (content) {
+    params.content = content;
   }
 
   const post = await Post.findByIdAndUpdate(id, params, { new: true });
