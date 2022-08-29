@@ -33,8 +33,25 @@ const readOne = async (id) => {
   return post;
 };
 
+// not sure about the if statements. I think they need to be changed
+const update = async (id, name, email) => {
+  const params = {};
+
+  if (name) {
+    params.name = name;
+  }
+
+  if (email) {
+    params.email = email;
+  }
+
+  const post = await Post.findByIdAndUpdate(id, params, { new: true });
+  return post;
+};
+
 export default {
   create,
   read,
   readOne,
+  update,
 };

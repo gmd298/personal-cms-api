@@ -42,4 +42,22 @@ postRouter.get('/:id', async (request, response) => {
   response.json(readPost);
 });
 
+postRouter.patch('/:id', async (request, response) => {
+  const {
+    params: {
+      id,
+    },
+    body: {
+      // ????
+    },
+  } = request;
+
+  const updatePost = await postService.update(
+    id,
+    // ????
+  );
+
+  response.json(updatePost);
+});
+
 export default postRouter;
