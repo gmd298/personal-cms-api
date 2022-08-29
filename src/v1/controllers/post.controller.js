@@ -64,4 +64,17 @@ postRouter.patch('/:id', async (request, response) => {
   response.json(updatePost);
 });
 
+postRouter.delete('/:id', async (request, response) => {
+  const {
+    params: {
+      id,
+    },
+  } = request;
+
+  const deletePost = await postService.destroy(
+    id,
+  );
+  response.json(deletePost);
+});
+
 export default postRouter;

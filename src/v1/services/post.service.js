@@ -52,9 +52,15 @@ const update = async (id, title, subtitle, content) => {
   return post;
 };
 
+const destroy = async (id) => {
+  const post = await Post.findByIdAndDelete(id);
+  return post;
+};
+
 export default {
   create,
   read,
   readOne,
   update,
+  destroy,
 };
