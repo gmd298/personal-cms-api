@@ -1,7 +1,9 @@
+import bcrypt from 'bcryptjs';
 import Admin from '../models/admin.model';
 
 const create = async (name, email, password) => {
-  const admin = await Admin.create({ name, email, password });
+  const hashedPassword = bcrypt.hashSync(password, 10);
+  const admin = await Admin.create({ name, email, password: hashedPassword });
   return admin;
 };
 
