@@ -1,4 +1,6 @@
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { jwtSecret } from '../../config';
 import Admin from '../models/admin.model';
 
 const create = async (name, email, password) => {
@@ -38,10 +40,27 @@ const destroy = async (id) => {
   return admin;
 };
 
+const login = async (email, password) => {
+  const admin = await Admin.findOne({ email });
+
+  if (!admin) {
+    return null;
+  }
+
+  const passwordCheck = bcrypt.compareSync(password, admin.password);
+
+  if (!passwordCheck) {
+    return null;
+  }
+
+  return jwt.sign({ admin }, jwtSecret);
+};
+
 export default {
   create,
   read,
   readOne,
   update,
   destroy,
+  login,
 };

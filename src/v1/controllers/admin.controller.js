@@ -74,4 +74,21 @@ adminRouter.delete('/:id', async (request, response) => {
   response.json(deleteAdmin);
 });
 
+adminRouter.post('/login', async (request, response) => {
+  const {
+    body: {
+      email,
+      password,
+    },
+  } = request;
+
+  const token = await adminService.login(email, password);
+
+  if (token) {
+    response.json(token);
+  } else {
+    response.status(401).json('unauthorized');
+  }
+});
+
 export default adminRouter;
