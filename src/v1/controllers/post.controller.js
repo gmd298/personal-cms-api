@@ -28,4 +28,18 @@ postRouter.get('/', async (request, response) => {
   response.json(posts);
 });
 
+postRouter.get('/:id', async (request, response) => {
+  const {
+    params: {
+      id,
+    },
+  } = request;
+
+  const readPost = await postService.readOne(
+    id,
+  );
+
+  response.json(readPost);
+});
+
 export default postRouter;

@@ -27,7 +27,14 @@ const read = async () => {
   return posts;
 };
 
+const readOne = async (id) => {
+  const post = await Post.findById(id).populate('admin');
+
+  return post;
+};
+
 export default {
   create,
   read,
+  readOne,
 };
