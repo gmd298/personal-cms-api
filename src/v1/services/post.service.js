@@ -33,8 +33,28 @@ const readOne = async (id) => {
   return post;
 };
 
+const update = async (id, title, subtitle, content) => {
+  const params = {};
+
+  if (title) {
+    params.title = title;
+  }
+
+  if (subtitle) {
+    params.subtitle = subtitle;
+  }
+
+  if (content) {
+    params.content = content;
+  }
+
+  const post = await Post.findByIdAndUpdate(id, params, { new: true });
+  return post;
+};
+
 export default {
   create,
   read,
   readOne,
+  update,
 };
