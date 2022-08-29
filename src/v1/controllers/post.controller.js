@@ -23,4 +23,9 @@ postRouter.post('/', async (request, response) => {
   response.json(newPost);
 });
 
+postRouter.get('/', async (request, response) => {
+  const posts = await postService.read();
+  response.json(posts);
+});
+
 export default postRouter;

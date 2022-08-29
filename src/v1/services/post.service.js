@@ -22,6 +22,12 @@ const create = async (title, subtitle, content, adminId) => {
   return post;
 };
 
+const read = async () => {
+  const posts = await Post.find({});
+  return posts;
+};
+
 export default {
   create,
+  read,
 };
