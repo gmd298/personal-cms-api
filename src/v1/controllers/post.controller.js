@@ -1,15 +1,18 @@
 import { Router } from 'express';
+import auth from '../middleware/auth';
 import postService from '../services/post.service';
 
 const postRouter = Router();
 
-postRouter.post('/', async (request, response) => {
+postRouter.post('/', auth, async (request, response) => {
   const {
+    admin: {
+      id: adminId,
+    },
     body: {
       title,
       subtitle,
       content,
-      adminId,
     },
   } = request;
 
@@ -42,7 +45,7 @@ postRouter.get('/:id', async (request, response) => {
   response.json(readPost);
 });
 
-postRouter.patch('/:id', async (request, response) => {
+postRouter.patch('/:id', auth, async (request, response) => {
   const {
     params: {
       id,
@@ -64,7 +67,7 @@ postRouter.patch('/:id', async (request, response) => {
   response.json(updatePost);
 });
 
-postRouter.delete('/:id', async (request, response) => {
+postRouter.delete('/:id', auth, async (request, response) => {
   const {
     params: {
       id,

@@ -1,9 +1,10 @@
 import { Router } from 'express';
+import auth from '../middleware/auth';
 import adminService from '../services/admin.service';
 
 const adminRouter = Router();
 
-adminRouter.post('/', async (request, response) => {
+adminRouter.post('/', auth, async (request, response) => {
   const {
     body: {
       name,
@@ -21,13 +22,13 @@ adminRouter.post('/', async (request, response) => {
   response.json(newAdmin);
 });
 
-adminRouter.get('/', async (request, response) => {
+adminRouter.get('/', auth, async (request, response) => {
   const admins = await adminService.read();
 
   response.json(admins);
 });
 
-adminRouter.get('/:id', async (request, response) => {
+adminRouter.get('/:id', auth, async (request, response) => {
   const {
     params: {
       id,
@@ -41,7 +42,7 @@ adminRouter.get('/:id', async (request, response) => {
   response.json(readAdmin);
 });
 
-adminRouter.patch('/:id', async (request, response) => {
+adminRouter.patch('/:id', auth, async (request, response) => {
   const {
     params: {
       id,
@@ -61,7 +62,7 @@ adminRouter.patch('/:id', async (request, response) => {
   response.json(updateAdmin);
 });
 
-adminRouter.delete('/:id', async (request, response) => {
+adminRouter.delete('/:id', auth, async (request, response) => {
   const {
     params: {
       id,
