@@ -1,13 +1,17 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import cors from 'cors';
 import logger from './config/logger';
 import v1Router from './v1';
-import { dbUrl, port, logLevel } from './config';
+import {
+  dbUrl, port, logLevel,
+} from './config';
 
 const app = express();
 app.use(morgan(logLevel));
 app.use(express.json());
+app.use(cors());
 app.use('/v1', v1Router);
 
 export const connect = async () => {
