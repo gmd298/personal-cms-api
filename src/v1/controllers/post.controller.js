@@ -29,7 +29,12 @@ postRouter.post('/', auth, async (request, response) => {
 });
 
 postRouter.get('/', async (request, response) => {
-  const posts = await postService.read();
+  const {
+    query: {
+      featured,
+    },
+  } = request;
+  const posts = await postService.read(featured);
   response.json(posts);
 });
 

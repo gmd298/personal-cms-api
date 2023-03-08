@@ -1,5 +1,6 @@
 import Post from '../models/post.model';
 import Admin from '../models/admin.model';
+import { parseBool } from '../../util';
 
 const create = async (title, subtitle, content, adminId, isFeatured) => {
   const post = await Post.create({
@@ -23,8 +24,12 @@ const create = async (title, subtitle, content, adminId, isFeatured) => {
   return post;
 };
 
-const read = async () => {
-  const posts = await Post.find({});
+const read = async (featured) => {
+  let searchParams = {};
+  if (parseBool(featured) === true) {
+    searchParams = { isFeatured: true };
+  }
+  const posts = await Post.find(searchParams);
   return posts;
 };
 
