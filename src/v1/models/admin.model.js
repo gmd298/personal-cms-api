@@ -9,6 +9,7 @@ const adminSchema = mongoose.Schema({
     unique: true,
     required: true,
   },
+  isPrimary: Boolean,
   password: String,
   role: {
     type: String,

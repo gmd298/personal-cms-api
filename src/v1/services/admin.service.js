@@ -3,9 +3,11 @@ import jwt from 'jsonwebtoken';
 import { jwtSecret } from '../../config';
 import Admin from '../models/admin.model';
 
-const create = async (name, email, password) => {
+const create = async (name, email, password, isPrimary) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
-  const admin = await Admin.create({ name, email, password: hashedPassword });
+  const admin = await Admin.create({
+    name, email, isPrimary, password: hashedPassword,
+  });
   return admin;
 };
 
@@ -20,7 +22,7 @@ const readOne = async (id) => {
   return admin;
 };
 
-const update = async (id, name, email) => {
+const update = async (id, name, email, isPrimary) => {
   const params = {};
 
   if (name) {
@@ -29,6 +31,10 @@ const update = async (id, name, email) => {
 
   if (email) {
     params.email = email;
+  }
+
+  if (isPrimary !== undefined && isPrimary !== null) {
+    params.isPrimary = isPrimary;
   }
 
   const admin = await Admin.findByIdAndUpdate(id, params, { new: true });
