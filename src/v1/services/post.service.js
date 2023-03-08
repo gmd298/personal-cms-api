@@ -1,12 +1,13 @@
 import Post from '../models/post.model';
 import Admin from '../models/admin.model';
 
-const create = async (title, subtitle, content, adminId) => {
+const create = async (title, subtitle, content, adminId, isFeatured) => {
   const post = await Post.create({
     title,
     subtitle,
     content,
     admin: adminId,
+    isFeatured,
   });
 
   await Admin.findByIdAndUpdate(
@@ -33,7 +34,7 @@ const readOne = async (id) => {
   return post;
 };
 
-const update = async (id, title, subtitle, content) => {
+const update = async (id, title, subtitle, content, isFeatured) => {
   const params = {};
 
   if (title) {
@@ -46,6 +47,10 @@ const update = async (id, title, subtitle, content) => {
 
   if (content) {
     params.content = content;
+  }
+
+  if (isFeatured !== undefined && isFeatured !== null) {
+    params.isFeatured = isFeatured;
   }
 
   const post = await Post.findByIdAndUpdate(id, params, { new: true });
