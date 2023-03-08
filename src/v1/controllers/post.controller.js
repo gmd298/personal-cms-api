@@ -13,6 +13,7 @@ postRouter.post('/', auth, async (request, response) => {
       title,
       subtitle,
       content,
+      isFeatured,
     },
   } = request;
 
@@ -21,6 +22,7 @@ postRouter.post('/', auth, async (request, response) => {
     subtitle,
     content,
     adminId,
+    isFeatured,
   );
 
   response.json(newPost);
@@ -54,6 +56,7 @@ postRouter.patch('/:id', auth, async (request, response) => {
       title,
       subtitle,
       content,
+      isFeatured,
     },
   } = request;
 
@@ -62,6 +65,7 @@ postRouter.patch('/:id', auth, async (request, response) => {
     title,
     subtitle,
     content,
+    isFeatured,
   );
 
   response.json(updatePost);

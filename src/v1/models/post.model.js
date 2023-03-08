@@ -20,6 +20,7 @@ const postSchema = mongoose.Schema({
     url: String,
     text: String,
   }],
+  isFeatured: Boolean,
   admin: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Admin',
