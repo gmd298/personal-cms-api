@@ -10,6 +10,7 @@ adminRouter.post('/', auth, async (request, response) => {
       name,
       email,
       password,
+      isPrimary,
     },
   } = request;
 
@@ -17,6 +18,7 @@ adminRouter.post('/', auth, async (request, response) => {
     name,
     email,
     password,
+    isPrimary,
   );
 
   response.json(newAdmin);
@@ -50,6 +52,7 @@ adminRouter.patch('/:id', auth, async (request, response) => {
     body: {
       name,
       email,
+      isPrimary,
     },
   } = request;
 
@@ -57,6 +60,7 @@ adminRouter.patch('/:id', auth, async (request, response) => {
     id,
     name,
     email,
+    isPrimary,
   );
 
   response.json(updateAdmin);
